@@ -1,3 +1,5 @@
+//const { assert } = require("console");
+
 const StarNotary = artifacts.require("StarNotary");
 
 var accounts;
@@ -76,8 +78,15 @@ it('lets user2 buy a star and decreases its balance in ether', async() => {
 // Implement Task 2 Add supporting unit tests
 
 it('can add the star name and star symbol properly', async() => {
+    let instance = await StarNotary.deployed();
+
     // 1. create a Star with different tokenId
     //2. Call the name and symbol properties in your Smart Contract and compare with the name and symbol provided
+    const name = await instance.getName();
+    const symbol = await instance.getSymbol();
+
+    assert.equal(name, "Test Token");
+    assert.equal(symbol, "TT");
 });
 
 it('lets 2 users exchange stars', async() => {

@@ -24,6 +24,14 @@ contract StarNotary is ERC721 {
     // mapping the TokenId and price
     mapping(uint256 => uint256) public starsForSale;
 
+    function getName() public view returns(string memory) {
+        return name;
+    }
+
+    function getSymbol() public view returns(string memory) {
+        return symbol;
+    }
+
     
     // Create Star using the Struct
     function createStar(string memory _name, uint256 _tokenId) public { // Passing the name and tokenId as a parameters
@@ -66,7 +74,7 @@ contract StarNotary is ERC721 {
     // Implement Task 1 Exchange Stars function
     function exchangeStars(uint256 _tokenId1, uint256 _tokenId2) public {
         //1. Passing to star tokenId you will need to check if the owner of _tokenId1 or _tokenId2 is the sender
-        require(ownerOf(_tokenId1) == msg.sender || ownerOf(tokenId2) == msg.sender);
+        require(ownerOf(_tokenId1) == msg.sender || ownerOf(_tokenId2) == msg.sender);
         //2. You don't have to check for the price of the token (star)
         //3. Get the owner of the two tokens (ownerOf(_tokenId1), ownerOf(_tokenId1)
         address ownerAddressOne = ownerOf(_tokenId1);
